@@ -1,0 +1,10 @@
+# sdkconfig.defaults — applied before menuconfig, committed to source control.
+# Targets the Olimex ESP32-S3-DevKit-Lipo: 8 MB QIO flash.
+
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+
+# Default log level: INFO (level 3).
+# VERBOSE=5, DEBUG=4, INFO=3, WARN=2, ERROR=1, NONE=0
+CONFIG_LOG_DEFAULT_LEVEL_INFO=y
+CONFIG_LOG_DEFAULT_LEVEL=3
