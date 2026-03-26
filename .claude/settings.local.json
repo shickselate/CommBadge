@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(idf.py set-target:*)",
+      "Bash(cmd.exe /c \"cd C:\\\\Users\\\\Stephen\\\\dev\\\\CommBadge\\\\comm_badge && idf.py set-target esp32s3 2>&1\")",
+      "Bash(cmd.exe /c \"where idf.py 2>&1 && python --version 2>&1\")"
+    ]
+  }
+}

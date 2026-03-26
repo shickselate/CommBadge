@@ -1,4 +1,3 @@
-
 # CommBadge
 
 A wearable voice note device inspired by the Star Trek communicator. Press the badge to record a spoken note. Later, sync to an Android phone over Bluetooth, where notes are transcribed to text and displayed as a list.
@@ -16,9 +15,17 @@ Built on an ESP32-S3 with a real I2S microphone and amplifier, running native ES
 - All state transitions logged over serial
 
 ### ✅ Milestone E2 — Microphone capture (complete)
-- INMP441 I2S MEMS microphone initialised and capturing
+- INMP441 I2S MEMS microphone initialised and capturing on I2S port 1
 - 16kHz mono PCM audio captured on button press
-- Audio level visible on serial monitor, confirms mic is picking up sound
+- RMS level meter visible on serial monitor, responds to sound and vibration
+- Diagnosed and resolved I2S stereo interleaving on ESP-IDF v6.0
+- Note: on a breadboard the mic couples strongly to vibration — expected behaviour, will improve in enclosure
+
+### 🔄 Milestone E3 — WAV file writing (next)
+- Wire up microSD breakout
+- Mount filesystem
+- Write valid WAV files on button press
+- Confirm files are playable on PC
 
 ---
 
@@ -29,8 +36,8 @@ Built on an ESP32-S3 with a real I2S microphone and amplifier, running native ES
 | Microcontroller | Olimex ESP32-S3-DevKit-Lipo (8MB flash, 8MB PSRAM) |
 | Microphone | INMP441 I2S MEMS microphone |
 | Amplifier | MAX98357 I2S Class D amp |
-| Storage | MicroSD breakout + card (next milestone) |
-| Battery | 3.7V LiPo (TBC) |
+| Storage | MicroSD breakout + card |
+| Battery | 3.7V LiPo (pending) |
 
 ### Pin assignments
 
@@ -43,6 +50,10 @@ Built on an ESP32-S3 with a real I2S microphone and amplifier, running native ES
 | INMP441 SCK | 5 |
 | INMP441 WS | 6 |
 | INMP441 SD | 4 |
+| MicroSD CLK | TBD |
+| MicroSD MOSI | TBD |
+| MicroSD MISO | TBD |
+| MicroSD CS | TBD |
 
 ---
 
@@ -68,7 +79,8 @@ Built with ESP-IDF v6.0. Target: `esp32s3`.
 
 1. Install ESP-IDF v6.0 and VS Code with the ESP-IDF extension
 2. Clone this repo
-3. Open an ESP-IDF terminal and run:
+3. Open an ESP-IDF terminal and run `export.ps1` (Windows) to initialise the environment
+4. Then:
 
 ```bash
 cd comm_badge
@@ -115,4 +127,3 @@ A native Kotlin Android app that:
 
 A wearable badge you can tap to capture a spoken thought. Later, open the Android app, sync, and read your notes as text — no typing, no phone in hand, no always-listening microphone. Simple, reliable, and a little bit sci-fi. 🖖
 
----
