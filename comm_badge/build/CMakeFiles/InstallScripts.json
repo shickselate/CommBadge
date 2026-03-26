@@ -159,6 +159,7 @@
 		"C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/button_service/cmake_install.cmake",
 		"C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/feedback_service/cmake_install.cmake",
 		"C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/state_machine/cmake_install.cmake",
+		"C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/cmake_install.cmake",
 		"C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/main/cmake_install.cmake"
 	],
 	"Parallel" : false

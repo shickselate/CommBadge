@@ -1108,6 +1108,13 @@ C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/state_machine/CMakeFiles
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/state_machine/CMakeFiles/install.dir
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/state_machine/CMakeFiles/install/local.dir
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/state_machine/CMakeFiles/install/strip.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/__idf_audio_service.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/edit_cache.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/rebuild_cache.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/list_install_components.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/install.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/install/local.dir
+C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/audio_service/CMakeFiles/install/strip.dir
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/main/CMakeFiles/__idf_main.dir
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/main/CMakeFiles/edit_cache.dir
 C:/Users/Stephen/dev/CommBadge/comm_badge/build/esp-idf/main/CMakeFiles/rebuild_cache.dir

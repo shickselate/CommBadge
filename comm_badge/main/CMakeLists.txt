@@ -4,5 +4,5 @@
 idf_component_register(
     SRCS        "app_main.c"
     INCLUDE_DIRS "."
-    REQUIRES    button_service feedback_service state_machine
+    REQUIRES    button_service feedback_service state_machine audio_service
 )

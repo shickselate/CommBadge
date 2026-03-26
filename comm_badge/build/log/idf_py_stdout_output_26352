@@ -1,0 +1,248 @@
+Command: C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:\esp\v6.0\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Stephen\dev\CommBadge\comm_badge\build\comm_badge.elf C:\Users\Stephen\dev\CommBadge\comm_badge\build\bootloader\bootloader.elf --force-color -m 'C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe' 'C:\esp\v6.0\esp-idf\tools\idf.py' '-p' 'COM4'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x2b (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1664
+load:0x403c8700,len:0xf38
+load:0x403cb700,len:0x31ec
+entry 0x403c8930
+[0;32mI (25) boot: ESP-IDF v6.0 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Mar 26 2026 14:38:49[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.1[0m
+[0;32mI (28) boot: efuse block revision: v1.2[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (73) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (83) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bd5ch ( 48476) map[0m
+[0;32mI (98) esp_image: segment 1: paddr=0001bd84 vaddr=3fc90900 size=030bch ( 12476) load[0m
+[0;32mI (101) esp_image: segment 2: paddr=0001ee48 vaddr=40374000 size=011d0h (  4560) load[0m
+[0;32mI (107) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=176a4h ( 95908) map[0m
+[0;32mI (128) esp_image: segment 4: paddr=000376cc vaddr=403751d0 size=0b6bch ( 46780) load[0m
+[0;32mI (137) esp_image: segment 5: paddr=00042d90 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (143) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (143) boot: Disabling RNG early entropy source...[0m
+[0;32mI (155) cpu_start: Multicore app[0m
+[0;32mI (163) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (164) cpu_start: Pro cpu start user code[0m
+[0;32mI (164) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (165) app_init: Application information:[0m
+[0;32mI (169) app_init: Project name:     comm_badge[0m
+[0;32mI (173) app_init: App version:      cefa8a4-dirty[0m
+[0;32mI (178) app_init: Compile time:     Mar 26 2026 16:20:10[0m
+[0;32mI (183) app_init: ELF file SHA256:  411fea22c...[0m
+[0;32mI (187) app_init: ESP-IDF:          v6.0[0m
+[0;32mI (191) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (195) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (199) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (202) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (209) heap_init: At 3FC943B0 len 00055360 (340 KiB): RAM[0m
+[0;32mI (214) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (219) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (224) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (230) spi_flash: detected chip: generic[0m
+[0;32mI (233) spi_flash: flash io: qio[0m
+[0;32mI (236) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (243) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (250) main_task: Started on CPU0[0m
+[0;32mI (290) main_task: Calling app_main()[0m
+[0;32mI (290) app_main: === CommBadge booting (Milestone E2) ===[0m
+[0;32mI (290) app_main: Initialising feedback service...[0m
+[0;32mI (290) feedback_service: Initialised — BCLK=15  LRCLK=16  DOUT=17  @ 44100 Hz 16-bit mono[0m
+[0;32mI (300) app_main: Playing boot chirp[0m
+[0;32mI (300) feedback_service: Playing chirp 0[0m
+[0;32mI (310) app_main: Initialising audio service...[0m
+[0;32mI (310) audio_service: Initialised — SCK=5  WS=6  SD=4  @ 16000 Hz 32-bit mono[0m
+[0;32mI (320) app_main: Initialising button service on GPIO 1...[0m
+[0;32mI (320) button_service: Initialised on GPIO 1[0m
+[0;32mI (330) state_machine: State: BOOT --> IDLE[0m
+[0;32mI (330) app_main: === CommBadge ready. Short-press = toggle record, Long-press = sync ===[0m
+[0;32mI (50570) button_service: Short press (169 ms)[0m
+[0;32mI (50570) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (50570) app_main: → Recording started[0m
+[0;32mI (50570) feedback_service: Playing chirp 0[0m
+[0;32mI (50570) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (52570) audio_service: mic  min=-8388608  max= 7864320  rms= 1989444  [##########][0m
+[0;32mI (54570) audio_service: mic  min=-8388608  max= 7340032  rms= 2002047  [##########][0m
+[0;32mI (56570) audio_service: mic  min=-8388608  max= 7340032  rms= 2082200  [##########][0m
+[0;32mI (58570) audio_service: mic  min=-8388608  max= 7340032  rms= 2008322  [##########][0m
+[0;32mI (60570) audio_service: mic  min=-8388608  max= 7340032  rms= 2029988  [##########][0m
+[0;32mI (62570) audio_service: mic  min=-8388608  max= 7340032  rms= 2045186  [##########][0m
+[0;32mI (64570) audio_service: mic  min=-8388608  max= 7340032  rms= 2036351  [##########][0m
+[0;32mI (66570) audio_service: mic  min=-8388608  max= 7340032  rms= 1995584  [##########][0m
+[0;32mI (68570) audio_service: mic  min=-8388608  max= 7340032  rms= 2001410  [##########][0m
+[0;32mI (70570) audio_service: mic  min=-8388608  max= 7340032  rms= 2002082  [##########][0m
+[0;32mI (72570) audio_service: mic  min=-8388608  max= 7340032  rms= 2019328  [##########][0m
+[0;32mI (74570) audio_service: mic  min=-8388608  max= 7340032  rms= 2029424  [##########][0m
+[0;32mI (76570) audio_service: mic  min=-8388608  max= 7340032  rms= 2002546  [##########][0m
+[0;32mI (78570) audio_service: mic  min=-8388608  max= 7340032  rms= 2026622  [##########][0m
+[0;32mI (80570) audio_service: mic  min=-8388608  max= 7340032  rms= 2023098  [##########][0m
+[0;32mI (82570) audio_service: mic  min=-8388608  max= 7340032  rms= 2041052  [##########][0m
+[0;32mI (84570) audio_service: mic  min=-8388608  max= 7340032  rms= 2009390  [##########][0m
+[0;32mI (86570) audio_service: mic  min=-8388608  max= 7340032  rms= 2000016  [##########][0m
+[0;32mI (88570) audio_service: mic  min=-8388608  max= 7340032  rms= 2063548  [##########][0m
+[0;32mI (90570) audio_service: mic  min=-8388608  max= 7340032  rms= 2018949  [##########][0m
+[0;32mI (92570) audio_service: mic  min=-8388608  max= 7340032  rms= 2026791  [##########][0m
+[0;32mI (94570) audio_service: mic  min=-8388608  max= 7340032  rms= 2053256  [##########][0m
+[0;32mI (95660) button_service: Short press (139 ms)[0m
+[0;32mI (95660) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (95660) app_main: → Recording stopped[0m
+[0;32mI (95680) audio_service: Capture stopped[0m
+[0;32mI (95690) feedback_service: Playing chirp 1[0m
+[0;32mI (101390) button_service: Short press (139 ms)[0m
+[0;32mI (101390) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (101390) app_main: → Recording started[0m
+[0;32mI (101390) feedback_service: Playing chirp 0[0m
+[0;32mI (101390) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (103390) audio_service: mic  min=-8388608  max= 7340032  rms= 2024086  [##########][0m
+[0;32mI (105390) audio_service: mic  min=-8388608  max= 7340032  rms= 2054895  [##########][0m
+[0;32mI (107390) audio_service: mic  min=-8388608  max= 7340032  rms= 2037522  [##########][0m
+[0;32mI (109390) audio_service: mic  min=-8388608  max= 7340032  rms= 2025436  [##########][0m
+[0;32mI (111390) audio_service: mic  min=-8388608  max= 7340032  rms= 2018723  [##########][0m
+[0;32mI (113390) audio_service: mic  min=-8388608  max= 7340032  rms= 2018212  [##########][0m
+[0;32mI (115390) audio_service: mic  min=-8388608  max= 7340032  rms= 2023359  [##########][0m
+[0;32mI (117390) audio_service: mic  min=-8388608  max= 7340032  rms= 2010210  [##########][0m
+[0;32mI (119390) audio_service: mic  min=-8388608  max= 7340032  rms= 2028032  [##########][0m
+[0;32mI (121390) audio_service: mic  min=-8388608  max= 7340032  rms= 2026038  [##########][0m
+[0;32mI (122940) button_service: Short press (109 ms)[0m
+[0;32mI (122940) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (122940) app_main: → Recording stopped[0m
+[0;32mI (122940) audio_service: Capture stopped[0m
+[0;32mI (122950) feedback_service: Playing chirp 1[0m
+[0;32mI (289780) button_service: Short press (109 ms)[0m
+[0;32mI (289780) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (289780) app_main: → Recording started[0m
+[0;32mI (289780) feedback_service: Playing chirp 0[0m
+[0;32mI (289780) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (291780) audio_service: mic  min=-8388608  max= 8126464  rms= 2231029  [##########][0m
+[0;32mI (293780) audio_service: mic  min=-8388608  max= 8126464  rms= 2258658  [##########][0m
+[0;32mI (295780) audio_service: mic  min=-8388608  max= 8126464  rms= 2314299  [##########][0m
+[0;32mI (297780) audio_service: mic  min=-8388608  max= 8126464  rms= 2330382  [##########][0m
+[0;32mI (299780) audio_service: mic  min=-8388608  max= 8126464  rms= 2337664  [##########][0m
+[0;32mI (301780) audio_service: mic  min=-8388608  max= 8126464  rms= 2087291  [##########][0m
+[0;32mI (303780) audio_service: mic  min=-8388608  max= 4161256  rms= 1306432  [##########][0m
+[0;32mI (305780) audio_service: mic  min=-8388608  max= 4070928  rms= 1320186  [##########][0m
+[0;32mI (307780) audio_service: mic  min=-8388608  max= 4161152  rms= 1303870  [##########][0m
+[0;32mI (309780) audio_service: mic  min=-8388608  max= 6799360  rms= 1287133  [##########][0m
+[0;32mI (311780) audio_service: mic  min=-8388608  max= 8126464  rms= 1974172  [##########][0m
+[0;32mI (313780) audio_service: mic  min=-8388608  max= 8126464  rms= 2120362  [##########][0m
+[0;32mI (315780) audio_service: mic  min=-8388608  max= 8126464  rms= 2085735  [##########][0m
+[0;32mI (317780) audio_service: mic  min=-8388608  max= 8126464  rms= 2074921  [##########][0m
+[0;32mI (319780) audio_service: mic  min=-8388608  max= 8126464  rms= 2293619  [##########][0m
+[0;32mI (321780) audio_service: mic  min=-8388608  max= 8126464  rms= 2325215  [##########][0m
+[0;32mI (323780) audio_service: mic  min=-8388608  max= 8126464  rms= 2318777  [##########][0m
+[0;32mI (325780) audio_service: mic  min=-8388608  max= 8126464  rms= 2242829  [##########][0m
+[0;32mI (326610) button_service: Short press (139 ms)[0m
+[0;32mI (326610) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (326610) app_main: → Recording stopped[0m
+[0;32mI (326620) audio_service: Capture stopped[0m
+[0;32mI (326630) feedback_service: Playing chirp 1[0m
+[0;32mI (355460) button_service: Short press (120 ms)[0m
+[0;32mI (355460) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (355460) app_main: → Recording started[0m
+[0;32mI (355460) feedback_service: Playing chirp 0[0m
+[0;32mI (355460) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (357460) audio_service: mic  min=-8388608  max= 7340032  rms= 2028302  [##########][0m
+[0;32mI (359460) audio_service: mic  min=-8388608  max=  524269  rms= 2007853  [##########][0m
+[0;32mI (361460) audio_service: mic  min=-8388608  max=  524284  rms= 1990532  [##########][0m
+[0;32mI (363460) audio_service: mic  min=-8388608  max= 7340032  rms= 2036533  [##########][0m
+[0;32mI (365460) audio_service: mic  min=-8388608  max=  524285  rms= 1998755  [##########][0m
+[0;32mI (367460) audio_service: mic  min=-8388608  max=  524287  rms= 2015097  [##########][0m
+[0;32mI (369460) audio_service: mic  min=-8388608  max=  524287  rms= 2019840  [##########][0m
+[0;32mI (371460) audio_service: mic  min=-8388608  max=  524287  rms= 2023584  [##########][0m
+[0;32mI (373460) audio_service: mic  min=-8388608  max=  524273  rms= 1996849  [##########][0m
+[0;32mI (375460) audio_service: mic  min=-8388608  max=  524287  rms= 2033751  [##########][0m
+[0;32mI (377460) audio_service: mic  min=-8388608  max= 7340032  rms= 2053615  [##########][0m
+[0;32mI (379460) audio_service: mic  min=-8388608  max=  524286  rms= 2001433  [##########][0m
+[0;32mI (380440) button_service: Short press (139 ms)[0m
+[0;32mI (380440) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (380440) app_main: → Recording stopped[0m
+[0;32mI (380450) audio_service: Capture stopped[0m
+[0;32mI (380460) feedback_service: Playing chirp 1[0m
+[0;32mI (544630) button_service: Short press (119 ms)[0m
+[0;32mI (544630) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (544630) app_main: → Recording started[0m
+[0;32mI (544630) feedback_service: Playing chirp 0[0m
+[0;32mI (544630) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (546630) audio_service: mic  min=-8388608  max= 7340032  rms= 2007714  [##########][0m
+[0;32mI (548630) audio_service: mic  min=-8388608  max=  524287  rms= 2013771  [##########][0m
+[0;32mI (550630) audio_service: mic  min=-8388608  max= 7340032  rms= 2068210  [##########][0m
+[0;32mI (552630) audio_service: mic  min=-8388608  max= 7340032  rms= 2012642  [##########][0m
+[0;32mI (554630) audio_service: mic  min=-8388608  max= 7864320  rms= 2048688  [##########][0m
+[0;32mI (556630) audio_service: mic  min=-8388608  max= 7864320  rms= 2086348  [##########][0m
+[0;32mI (558630) audio_service: mic  min=-8388608  max= 8126464  rms= 2123632  [##########][0m
+[0;32mI (560630) audio_service: mic  min=-8388608  max= 7864320  rms= 1961513  [##########][0m
+[0;32mI (562630) audio_service: mic  min=-8388608  max=  524284  rms= 1961158  [##########][0m
+[0;32mI (564630) audio_service: mic  min=-8388608  max=  524283  rms= 2015105  [##########][0m
+[0;32mI (566630) audio_service: mic  min=-8388608  max= 7340032  rms= 1994282  [##########][0m
+[0;32mI (568630) audio_service: mic  min=-8388608  max= 7340032  rms= 1988968  [##########][0m
+[0;32mI (570630) audio_service: mic  min=-8388608  max= 7340032  rms= 1998192  [##########][0m
+[0;32mI (572630) audio_service: mic  min=-8388608  max= 7340032  rms= 1611913  [##########][0m
+[0;32mI (574630) audio_service: mic  min=-8388608  max= 4194304  rms= 1256140  [##########][0m
+[0;32mI (576630) audio_service: mic  min=-8388608  max= 4194304  rms= 1230978  [##########][0m
+[0;32mI (578630) audio_service: mic  min=-8388608  max= 7340032  rms= 1269150  [##########][0m
+[0;32mI (580630) audio_service: mic  min=-8388608  max= 7864320  rms= 1618627  [##########][0m
+[0;32mI (582630) audio_service: mic  min=-8388608  max= 7340032  rms= 1955885  [##########][0m
+[0;32mI (584630) audio_service: mic  min=-8388608  max=  524282  rms= 1951913  [##########][0m
+[0;32mI (586630) audio_service: mic  min=-8388608  max=  524286  rms= 1968425  [##########][0m
+[0;32mI (588630) audio_service: mic  min=-8388608  max=  524287  rms= 1997065  [##########][0m
+[0;32mI (590630) audio_service: mic  min=-8388608  max=  524284  rms= 1967882  [##########][0m
+[0;32mI (592630) audio_service: mic  min=-8388608  max=  524287  rms= 1966235  [##########][0m
+[0;32mI (594630) audio_service: mic  min=-8388608  max=  524287  rms= 1962464  [##########][0m
+[0;32mI (596630) audio_service: mic  min=-8388608  max=  524275  rms= 1969396  [##########][0m
+[0;32mI (598630) audio_service: mic  min=-8388608  max=  524286  rms= 1948776  [##########][0m
+[0;32mI (600630) audio_service: mic  min=-8388608  max=  524280  rms= 1947531  [##########][0m
+[0;32mI (602630) audio_service: mic  min=-8388608  max= 7340032  rms= 1996533  [##########][0m
+[0;32mI (604630) audio_service: mic  min=-8388608  max= 8388569  rms= 3673816  [##########][0m
+[0;32mI (606630) audio_service: mic  min=       0  max= 8388607  rms= 4251610  [##########][0m
+[0;32mI (608630) audio_service: mic  min=       0  max= 8388607  rms= 4235044  [##########][0m
+[0;32mI (610630) audio_service: mic  min=       0  max= 8388607  rms= 4186195  [##########][0m
+[0;32mI (612630) audio_service: mic  min=-8388608  max= 8388607  rms= 2751085  [##########][0m
+[0;32mI (614630) audio_service: mic  min=-8388608  max=  524287  rms= 2077025  [##########][0m
+[0;32mI (616630) audio_service: mic  min=-8388608  max=  524280  rms= 1964800  [##########][0m
+[0;32mI (618630) audio_service: mic  min=-8388608  max=  524282  rms= 1981211  [##########][0m
+[0;32mI (620630) audio_service: mic  min=-8388608  max=  524287  rms= 1999041  [##########][0m
+[0;32mI (622630) audio_service: mic  min=-8388608  max=  524282  rms= 1990386  [##########][0m
+[0;32mI (624630) audio_service: mic  min=-8388608  max= 7340032  rms= 1971866  [##########][0m
+[0;32mI (626630) audio_service: mic  min=-8388608  max= 7340032  rms= 2040932  [##########][0m
+[0;32mI (628630) audio_service: mic  min=-8388608  max=  524280  rms= 1944301  [##########][0m
+[0;32mI (630630) audio_service: mic  min=-8388608  max=  524285  rms= 1962053  [##########][0m
+[0;32mI (632630) audio_service: mic  min=-8388608  max= 7340032  rms= 1943883  [##########][0m
+[0;32mI (634630) audio_service: mic  min=-8388608  max= 7340032  rms= 1966203  [##########][0m
+[0;32mI (636630) audio_service: mic  min=-8388608  max=  524287  rms= 1981149  [##########][0m
+[0;32mI (637030) button_service: Short press (129 ms)[0m
+[0;32mI (637030) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (637030) app_main: → Recording stopped[0m
+[0;32mI (637030) audio_service: Capture stopped[0m
+[0;32mI (637040) feedback_service: Playing chirp 1[0m
+[0;32mI (708640) button_service: Short press (129 ms)[0m
+[0;32mI (708640) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (708640) app_main: → Recording started[0m
+[0;32mI (708640) feedback_service: Playing chirp 0[0m
+[0;32mI (708640) audio_service: Capture started — reporting every 2000 ms[0m
+[0;32mI (710640) audio_service: mic  min=-8388608  max= 7340032  rms= 2015030  [##########][0m
+[0;32mI (712640) audio_service: mic  min=-8388608  max=  524271  rms= 2017302  [##########][0m
+[0;32mI (714640) audio_service: mic  min=-8388608  max= 7340032  rms= 1948886  [##########][0m
+[0;32mI (716640) audio_service: mic  min=-8388608  max= 7340032  rms= 1999602  [##########][0m
+[0;32mI (718640) audio_service: mic  min=-8388608  max= 7340032  rms= 1479126  [##########][0m
+[0;32mI (720640) audio_service: mic  min=-8388608  max= 4194304  rms= 1229383  [##########][0m
+[0;32mI (722640) audio_service: mic  min=-8388608  max= 4194304  rms= 1232352  [##########][0m
+[0;32mI (724640) audio_service: mic  min=-8388608  max= 3932196  rms= 1253094  [##########][0m
+[0;32mI (726640) audio_service: mic  min=-8388608  max= 7864320  rms= 1674943  [##########][0m
+[0;32mI (728640) audio_service: mic  min=-8388608  max= 7340032  rms= 1987013  [##########][0m
+[0;32mI (730640) audio_service: mic  min=-8388608  max= 7340032  rms= 2000114  [##########][0m
+[0;32mI (731910) button_service: Short press (119 ms)[0m
+[0;32mI (731910) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (731910) app_main: → Recording stopped[0m
+[0;32mI (731910) audio_service: Capture stopped[0m
+[0;32mI (731920) feedback_service: Playing chirp 1[0m

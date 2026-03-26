@@ -1,0 +1,137 @@
+Command: C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:\esp\v6.0\esp-idf\tools/idf_monitor.py -p COM4 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 C:\Users\Stephen\dev\CommBadge\comm_badge\build\comm_badge.elf C:\Users\Stephen\dev\CommBadge\comm_badge\build\bootloader\bootloader.elf --force-color -m 'C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe' 'C:\esp\v6.0\esp-idf\tools\idf.py' '-p' 'COM4'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x1664
+load:0x403c8700,len:0xf38
+load:0x403cb700,len:0x31ec
+entry 0x403c8930
+[0;32mI (25) boot: ESP-IDF v6.0 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Mar 26 2026 14:38:49[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.1[0m
+[0;32mI (28) boot: efuse block revision: v1.2[0m
+[0;32mI (31) qio_mode: Enabling default flash chip QIO[0m
+[0;32mI (36) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (40) boot.esp32s3: SPI Mode       : QIO[0m
+[0;32mI (43) boot.esp32s3: SPI Flash Size : 8MB[0m
+[0;32mI (47) boot: Enabling RNG early entropy source...[0m
+[0;32mI (52) boot: Partition Table:[0m
+[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (60) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (67) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (73) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (80) boot: End of partition table[0m
+[0;32mI (83) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=0bddch ( 48604) map[0m
+[0;32mI (98) esp_image: segment 1: paddr=0001be04 vaddr=3fc90900 size=030bch ( 12476) load[0m
+[0;32mI (101) esp_image: segment 2: paddr=0001eec8 vaddr=40374000 size=01150h (  4432) load[0m
+[0;32mI (107) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=17778h ( 96120) map[0m
+[0;32mI (128) esp_image: segment 4: paddr=000377a0 vaddr=40375150 size=0b73ch ( 46908) load[0m
+[0;32mI (137) esp_image: segment 5: paddr=00042ee4 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (143) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (143) boot: Disabling RNG early entropy source...[0m
+[0;32mI (155) cpu_start: Multicore app[0m
+[0;32mI (163) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (164) cpu_start: Pro cpu start user code[0m
+[0;32mI (164) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (165) app_init: Application information:[0m
+[0;32mI (169) app_init: Project name:     comm_badge[0m
+[0;32mI (173) app_init: App version:      cefa8a4-dirty[0m
+[0;32mI (178) app_init: Compile time:     Mar 26 2026 16:20:10[0m
+[0;32mI (183) app_init: ELF file SHA256:  b7df29799...[0m
+[0;32mI (187) app_init: ESP-IDF:          v6.0[0m
+[0;32mI (191) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (195) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (199) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (202) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (209) heap_init: At 3FC943B0 len 00055360 (340 KiB): RAM[0m
+[0;32mI (214) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (219) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (224) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (230) spi_flash: detected chip: generic[0m
+[0;32mI (233) spi_flash: flash io: qio[0m
+[0;32mI (237) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (243) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (250) main_task: Started on CPU0[0m
+[0;32mI (290) main_task: Calling app_main()[0m
+[0;32mI (290) app_main: === CommBadge booting (Milestone E2) ===[0m
+[0;32mI (290) app_main: Initialising feedback service...[0m
+[0;32mI (290) feedback_service: Initialised — BCLK=15  LRCLK=16  DOUT=17  @ 44100 Hz 16-bit mono[0m
+[0;32mI (300) app_main: Playing boot chirp[0m
+[0;32mI (300) feedback_service: Playing chirp 0[0m
+[0;32mI (310) app_main: Initialising audio service...[0m
+[0;32mI (310) audio_service: Initialised — SCK=5  WS=6  SD=4  @ 16000 Hz 32-bit mono[0m
+[0;32mI (320) app_main: Initialising button service on GPIO 1...[0m
+[0;32mI (320) button_service: Initialised on GPIO 1[0m
+[0;32mI (330) state_machine: State: BOOT --> IDLE[0m
+[0;32mI (330) app_main: === CommBadge ready. Short-press = toggle record, Long-press = sync ===[0m
+[0;32mI (4350) button_service: Short press (149 ms)[0m
+[0;32mI (4350) state_machine: State: IDLE --> RECORDING[0m
+[0;32mI (4350) app_main: → Recording started[0m
+[0;32mI (4350) feedback_service: Playing chirp 0[0m
+[0;32mI (4350) audio_service: Capture started — reporting every 1000 ms[0m
+[0;32mI (4360) audio_service: --- RAW HEX DUMP (first 8 samples) ---[0m
+[0;32mI (4360) audio_service:   raw[0] = 0x00070E40  (462400)[0m
+[0;32mI (4370) audio_service:   raw[1] = 0x00000000  (0)[0m
+[0;32mI (4370) audio_service:   raw[2] = 0x0001C390  (115600)[0m
+[0;32mI (4380) audio_service:   raw[3] = 0x00000000  (0)[0m
+[0;32mI (4380) audio_service:   raw[4] = 0x03EE455F  (65946975)[0m
+[0;32mI (4390) audio_service:   raw[5] = 0x00000000  (0)[0m
+[0;32mI (4390) audio_service:   raw[6] = 0x03FBE6FF  (66840319)[0m
+[0;32mI (4400) audio_service:   raw[7] = 0x00000000  (0)[0m
+[0;32mI (4400) audio_service: --- END DUMP ---[0m
+[0;32mI (5350) audio_service: mic  min=       0  max=  262143  rms=  126362  [##########][0m
+[0;32mI (6350) audio_service: mic  min=       0  max=  262134  rms=  128214  [##########][0m
+[0;32mI (7360) audio_service: mic  min=       0  max=  262143  rms=  127616  [##########][0m
+[0;32mI (8370) audio_service: mic  min=       0  max=  262142  rms=  103122  [##########][0m
+[0;32mI (9370) audio_service: mic  min=       0  max=  262143  rms=   99083  [##########][0m
+[0;32mI (10390) audio_service: mic  min=       0  max=  262140  rms=   91721  [##########][0m
+[0;32mI (11390) audio_service: mic  min=       0  max=  262133  rms=   78130  [##########][0m
+[0;32mI (12400) audio_service: mic  min=       0  max=  262142  rms=   77517  [##########][0m
+[0;32mI (13410) audio_service: mic  min=       0  max=  262143  rms=   70183  [##########][0m
+[0;32mI (14410) audio_service: mic  min=       0  max=  262140  rms=   72695  [##########][0m
+[0;32mI (15430) audio_service: mic  min=       0  max=  262141  rms=   72118  [##########][0m
+[0;32mI (16430) audio_service: mic  min=       0  max=  262143  rms=   71868  [##########][0m
+[0;32mI (17440) audio_service: mic  min=       0  max=  262128  rms=   70639  [##########][0m
+[0;32mI (18450) audio_service: mic  min=       0  max=  262139  rms=   71701  [##########][0m
+[0;32mI (19450) audio_service: mic  min=       0  max=  262140  rms=   70948  [##########][0m
+[0;32mI (20470) audio_service: mic  min=       0  max=  262134  rms=   41152  [##########][0m
+[0;32mI (21470) audio_service: mic  min=       0  max=   65410  rms=    4749  [####      ][0m
+[0;32mI (22480) audio_service: mic  min=       0  max=  102266  rms=    4953  [####      ][0m
+[0;32mI (23490) audio_service: mic  min=       0  max=  115083  rms=    4949  [####      ][0m
+[0;32mI (24490) audio_service: mic  min=       0  max=   66626  rms=    4569  [####      ][0m
+[0;32mI (25510) audio_service: mic  min=       0  max=   62585  rms=    4859  [####      ][0m
+[0;32mI (26510) audio_service: mic  min=       0  max=  131852  rms=    5949  [#####     ][0m
+[0;32mI (27520) audio_service: mic  min=       0  max=  107205  rms=    5800  [#####     ][0m
+[0;32mI (28530) audio_service: mic  min=       0  max=  108583  rms=    5607  [#####     ][0m
+[0;32mI (29530) audio_service: mic  min=       0  max=  119141  rms=    5136  [#####     ][0m
+[0;32mI (30550) audio_service: mic  min=       0  max=   71656  rms=    5001  [#####     ][0m
+[0;32mI (31550) audio_service: mic  min=       0  max=  121720  rms=    5047  [#####     ][0m
+[0;32mI (32560) audio_service: mic  min=       0  max=  262078  rms=    9300  [######### ][0m
+[0;32mI (33570) audio_service: mic  min=       0  max=  262140  rms=   34807  [##########][0m
+[0;32mI (34570) audio_service: mic  min=       0  max=  262125  rms=   49738  [##########][0m
+[0;32mI (35590) audio_service: mic  min=       0  max=  262139  rms=   62102  [##########][0m
+[0;32mI (36590) audio_service: mic  min=       0  max=  262135  rms=   67718  [##########][0m
+[0;32mI (37600) audio_service: mic  min=       0  max=  262143  rms=   68963  [##########][0m
+[0;32mI (38610) audio_service: mic  min=       0  max=  262131  rms=   69079  [##########][0m
+[0;32mI (39610) audio_service: mic  min=       0  max=  262142  rms=   72140  [##########][0m
+[0;32mI (40630) audio_service: mic  min=       0  max=  262122  rms=   56129  [##########][0m
+[0;32mI (41630) audio_service: mic  min=       0  max=   68491  rms=    4856  [####      ][0m
+[0;32mI (42640) audio_service: mic  min=       0  max=  200081  rms=    5532  [#####     ][0m
+[0;32mI (43650) audio_service: mic  min=       0  max=  120025  rms=    5380  [#####     ][0m
+[0;32mI (44650) audio_service: mic  min=       0  max=   62081  rms=    4423  [####      ][0m
+[0;32mI (45670) audio_service: mic  min=       0  max=   64775  rms=    4467  [####      ][0m
+[0;32mI (46670) audio_service: mic  min=       0  max=   65519  rms=    4215  [####      ][0m
+[0;32mI (47680) audio_service: mic  min=       0  max=   65433  rms=    4235  [####      ][0m
+[0;32mI (48690) audio_service: mic  min=       0  max=   60395  rms=    4201  [####      ][0m
+[0;32mI (49690) audio_service: mic  min=       0  max=  262141  rms=   33237  [##########][0m
+[0;32mI (50710) audio_service: mic  min=       0  max=  262142  rms=   75669  [##########][0m
+[0;32mI (51710) audio_service: mic  min=       0  max=  262128  rms=   85671  [##########][0m
+[0;32mI (52720) audio_service: mic  min=       0  max=  262141  rms=   90634  [##########][0m
+[0;32mI (53600) button_service: Short press (139 ms)[0m
+[0;32mI (53600) state_machine: State: RECORDING --> IDLE[0m
+[0;32mI (53600) app_main: → Recording stopped[0m
+[0;32mI (53600) audio_service: Capture stopped[0m
+[0;32mI (53610) feedback_service: Playing chirp 1[0m

@@ -1,0 +1,15 @@
+Command: ninja all
+Configuration Report                                                           
++-----------------------------------------------------------------------------+
+|  Parser Version: 1                                                          |
+|  Verbosity: default                                                         |
+|  Defaults policy: sdkconfig                                                 |
+|  Status: Finished with notifications                                        |
+|                                                                             |
+| Disabled Symbols/Choices With User-Set Value                                |
+| +-------------------------------------------------------------------------+ |
+| | * LOG_DEFAULT_LEVEL (defined at                                         | |
+| | C:/esp/v6.0/esp-idf/components/log\./Kconfig.level:32) with user-set    | |
+| | value 3 from C:\Users\Stephen\AppData\Local\Temp\kconfgen_tmpq5f4gv_w   | |
+| +-------------------------------------------------------------------------+ |
++-----------------------------------------------------------------------------+

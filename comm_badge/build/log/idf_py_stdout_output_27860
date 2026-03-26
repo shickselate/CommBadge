@@ -1,0 +1,18 @@
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
+[1/1] C:\windows\system32\cmd.exe /C "cd /D C:\Users\Stephen\dev\CommBadge\comm_badge\build\bootloader && C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Stephen/dev/CommBadge/comm_badge/build/bootloader/bootloader.bin"
+Bootloader binary size 0x57e0 bytes. 0x2820 bytes (31%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/audio_service/CMakeFiles/__idf_audio_service.dir/audio_service.c.obj
+[5/9] Linking C static library esp-idf\audio_service\libaudio_service.a
+[6/9] Generating esp-idf/esp_system/ld/sections.ld
+[7/9] Linking CXX executable comm_badge.elf
+[8/9] Generating binary image from built executable
+esptool v5.2.0
+Creating ESP32-S3 image...
+Merged 2 ELF sections.
+Successfully created ESP32-S3 image.
+Generated C:/Users/Stephen/dev/CommBadge/comm_badge/build/comm_badge.bin
+[9/9] C:\windows\system32\cmd.exe /C "cd /D C:\Users\Stephen\dev\CommBadge\comm_badge\build && C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Stephen/dev/CommBadge/comm_badge/build/partition_table/partition-table.bin C:/Users/Stephen/dev/CommBadge/comm_badge/build/comm_badge.bin"
+comm_badge.bin binary size 0x32f30 bytes. Smallest app partition is 0x100000 bytes. 0xcd0d0 bytes (80%) free.
