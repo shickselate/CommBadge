@@ -61,11 +61,12 @@ static void button_task(void *arg)
                     int64_t duration_ms =
                         (esp_timer_get_time() - s_press_start_us) / 1000;
 
-                    button_event_t evt =
-                        (duration_ms >= 1000) ? EVT_BUTTON_LONG : EVT_BUTTON_SHORT;
+                    /* 0 = short (EVT_BUTTON_SHORT), 1 = long (EVT_BUTTON_LONG)
+                     * — values match sm_event_t in state_machine.h. */
+                    int evt = (duration_ms >= 1000) ? 1 : 0;
 
                     ESP_LOGI(TAG, "%s press (%lld ms)",
-                             (evt == EVT_BUTTON_LONG) ? "Long" : "Short",
+                             (evt == 1) ? "Long" : "Short",
                              duration_ms);
 
                     /* Post to the caller's queue; drop if it is full. */

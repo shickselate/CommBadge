@@ -1,0 +1,8 @@
+# CommBadge custom partition table.
+# 8 MB flash total.  The "audio" FAT partition gets 4 MB for WAV recordings.
+#
+# Name,   Type, SubType, Offset,   Size,     Flags
+nvs,      data, nvs,     0x9000,   0x6000,
+phy_init, data, phy,     0xf000,   0x1000,
+factory,  app,  factory, 0x10000,  0x180000,
+audio,    data, fat,     0x190000, 0x400000,

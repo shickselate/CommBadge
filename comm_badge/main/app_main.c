@@ -1,25 +1,32 @@
 /*
- * app_main.c — CommBadge entry point (Milestone E2).
+ * app_main.c — CommBadge entry point (Milestone E3).
  *
  * Boot sequence:
- *   1. Initialise feedback service (I2S port 0 / MAX98357 amplifier).
- *   2. Play a boot chirp to confirm audio hardware is working.
- *   3. Initialise audio service (I2S port 1 / INMP441 microphone).
- *   4. Create the button event queue.
- *   5. Initialise button service (GPIO + debounce task).
- *   6. Initialise state machine (BOOT → IDLE).
- *   7. Enter the main event loop.
+ *   1. storage_service  — mount FAT filesystem on the "audio" flash partition.
+ *   2. audio_service    — init INMP441 on I2S port 1.
+ *   3. playback_service — init MAX98357 on I2S port 0.
+ *   4. button_service   — init GPIO with debounce task.
+ *   5. state_machine    — BOOT → IDLE.
+ *   6. Main event loop.
  *
- * Main event loop:
- *   Blocks on the button queue.  Each received event is fed to the state
- *   machine; if the state changes, the appropriate chirp is played and
- *   microphone capture is started or stopped.
+ * Event loop:
+ *   A single integer queue carries both button events and system events
+ *   (EVT_PLAYBACK_DONE from playback_service).  Every event is mapped to
+ *   sm_event_t and fed to the state machine.  The app then acts on the
+ *   resulting state transition.
+ *
+ * State → action mapping:
+ *   → STATE_RECORDING : audio_service_start_capture()
+ *   → STATE_PLAYING   : audio_service_stop_capture() + playback_service_start()
+ *   → STATE_IDLE      : playback_service_stop() (if was PLAYING, stops early)
+ *   → STATE_SYNC_ADV  : (placeholder — no action yet)
  */
 
-#include "config.h"            /* Pin assignments — edit only this file    */
+#include "config.h"
 #include "button_service.h"
-#include "feedback_service.h"
 #include "audio_service.h"
+#include "playback_service.h"
+#include "storage_service.h"
 #include "state_machine.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
@@ -27,28 +34,25 @@
 
 static const char *TAG = "app_main";
 
+/* Single app-wide event queue.  Carries sm_event_t values as int.
+ * button_service posts 0 (short) / 1 (long).
+ * playback_service posts EVT_PLAYBACK_DONE (2).
+ * All values match sm_event_t in state_machine.h. */
+static QueueHandle_t s_app_queue;
+
 void app_main(void)
 {
-    ESP_LOGI(TAG, "=== CommBadge booting (Milestone E2) ===");
+    ESP_LOGI(TAG, "=== CommBadge booting (Milestone E3) ===");
 
     /* ------------------------------------------------------------------ */
-    /* 1.  Audio feedback service                                          */
+    /* 1.  Storage — mount FAT on "audio" partition                        */
     /* ------------------------------------------------------------------ */
-    ESP_LOGI(TAG, "Initialising feedback service...");
-    ESP_ERROR_CHECK(feedback_service_init(
-        CONFIG_I2S_BCLK_GPIO,
-        CONFIG_I2S_LRCLK_GPIO,
-        CONFIG_I2S_DOUT_GPIO
-    ));
+    ESP_LOGI(TAG, "Mounting storage...");
+    ESP_ERROR_CHECK(storage_service_init());
+    ESP_LOGI(TAG, "Free space: %llu bytes", storage_get_free_bytes());
 
     /* ------------------------------------------------------------------ */
-    /* 2.  Boot chirp — audible confirmation that the amp is alive         */
-    /* ------------------------------------------------------------------ */
-    ESP_LOGI(TAG, "Playing boot chirp");
-    ESP_ERROR_CHECK(feedback_play(CHIRP_RECORD_START));
-
-    /* ------------------------------------------------------------------ */
-    /* 3.  Audio capture service (INMP441 on I2S port 1)                  */
+    /* 2.  Audio capture service (INMP441 on I2S port 1)                  */
     /* ------------------------------------------------------------------ */
     ESP_LOGI(TAG, "Initialising audio service...");
     ESP_ERROR_CHECK(audio_service_init(
@@ -58,68 +62,83 @@ void app_main(void)
     ));
 
     /* ------------------------------------------------------------------ */
-    /* 4.  Button event queue                                              */
+    /* 3.  App event queue — shared by button, playback, and future events */
     /* ------------------------------------------------------------------ */
-    QueueHandle_t button_queue = xQueueCreate(8, sizeof(button_event_t));
-    if (button_queue == NULL) {
-        ESP_LOGE(TAG, "Failed to create button event queue — halting");
+    s_app_queue = xQueueCreate(16, sizeof(int));
+    if (s_app_queue == NULL) {
+        ESP_LOGE(TAG, "Failed to create app event queue — halting");
         return;
     }
+
+    /* ------------------------------------------------------------------ */
+    /* 4.  Playback service (MAX98357 on I2S port 0)                      */
+    /* ------------------------------------------------------------------ */
+    ESP_LOGI(TAG, "Initialising playback service...");
+    ESP_ERROR_CHECK(playback_service_init(
+        CONFIG_I2S_BCLK_GPIO,
+        CONFIG_I2S_LRCLK_GPIO,
+        CONFIG_I2S_DOUT_GPIO,
+        s_app_queue
+    ));
 
     /* ------------------------------------------------------------------ */
     /* 5.  Button service                                                  */
     /* ------------------------------------------------------------------ */
     ESP_LOGI(TAG, "Initialising button service on GPIO %d...", CONFIG_BUTTON_GPIO);
-    ESP_ERROR_CHECK(button_service_init(CONFIG_BUTTON_GPIO, button_queue));
+    /* button_service posts button_event_t values (0 = SHORT, 1 = LONG)
+     * which match EVT_BUTTON_SHORT / EVT_BUTTON_LONG in sm_event_t. */
+    ESP_ERROR_CHECK(button_service_init(CONFIG_BUTTON_GPIO, s_app_queue));
 
     /* ------------------------------------------------------------------ */
     /* 6.  State machine                                                   */
     /* ------------------------------------------------------------------ */
-    state_machine_init();   /* Logs BOOT --> IDLE internally */
-    ESP_LOGI(TAG, "=== CommBadge ready. Short-press = toggle record, Long-press = sync ===");
+    state_machine_init();
+    ESP_LOGI(TAG, "=== CommBadge ready. Short-press = record/stop, Long-press = sync ===");
 
     /* ------------------------------------------------------------------ */
     /* 7.  Main event loop                                                 */
     /* ------------------------------------------------------------------ */
-    button_event_t evt;
+    int raw_evt;
     while (1) {
-        /* Block indefinitely until a button event arrives. */
-        if (xQueueReceive(button_queue, &evt, portMAX_DELAY) != pdTRUE) {
+        if (xQueueReceive(s_app_queue, &raw_evt, portMAX_DELAY) != pdTRUE) {
             continue;
         }
 
-        /* Snapshot the state BEFORE processing so we can detect a change. */
+        sm_event_t evt  = (sm_event_t)raw_evt;
         sm_state_t prev = state_machine_get_state();
         sm_state_t next = state_machine_process(evt);
 
-        if (next == prev) {
-            /* No transition — nothing to do. */
-            continue;
-        }
+        if (next == prev) continue;   /* No transition — nothing to do. */
 
-        /* Play the chirp that matches the NEW state. */
+        /* Act on the new state. */
         switch (next) {
+
             case STATE_RECORDING:
-                ESP_LOGI(TAG, "→ Recording started");
-                feedback_play(CHIRP_RECORD_START);
-                audio_service_start_capture();
+                ESP_LOGI(TAG, "→ Starting capture to %s",
+                         storage_get_recording_path());
+                audio_service_start_capture(storage_get_recording_path());
+                break;
+
+            case STATE_PLAYING:
+                /* Stop the mic first (finalises the WAV header), then play. */
+                ESP_LOGI(TAG, "→ Stopping capture, starting playback");
+                audio_service_stop_capture();
+                playback_service_start(storage_get_recording_path());
                 break;
 
             case STATE_IDLE:
-                if (prev == STATE_RECORDING) {
-                    ESP_LOGI(TAG, "→ Recording stopped");
-                    audio_service_stop_capture();
-                    feedback_play(CHIRP_RECORD_STOP);
+                /* Could be arriving from PLAYING (button interrupt) or
+                 * SYNC_ADVERTISING (long press cancel).  Stop whatever is running. */
+                if (prev == STATE_PLAYING) {
+                    ESP_LOGI(TAG, "→ Playback interrupted");
+                    playback_service_stop();
                 } else {
-                    /* Returning from SYNC_ADVERTISING. */
-                    ESP_LOGI(TAG, "→ Sync advertising cancelled");
-                    feedback_play(CHIRP_RECORD_STOP);
+                    ESP_LOGI(TAG, "→ Returned to IDLE from %d", (int)prev);
                 }
                 break;
 
             case STATE_SYNC_ADVERTISING:
-                ESP_LOGI(TAG, "→ Sync advertising started");
-                feedback_play(CHIRP_SYNC_START);
+                ESP_LOGI(TAG, "→ Sync advertising (placeholder)");
                 break;
 
             default:

@@ -1,12 +1,11 @@
 /*
- * audio_service.h — Public API for INMP441 microphone capture (Milestone E2).
+ * audio_service.h — Public API for INMP441 microphone capture (Milestone E3).
  *
- * Capture runs in a dedicated FreeRTOS task.  Every 2 seconds it prints
- * min/max/RMS statistics and an ASCII level meter to the serial monitor so
- * you can confirm the mic is alive without needing any extra tooling.
+ * Captures audio from the INMP441 on I2S port 1 and writes it as a 16-bit
+ * mono WAV file to the path supplied by the caller (typically from
+ * storage_get_recording_path()).
  *
- * Pin assignments are taken from config.h and passed to audio_service_init()
- * by app_main — this header stays pin-agnostic.
+ * The level meter and debug dump from E2 are retained for diagnosis.
  */
 #pragma once
 
@@ -16,28 +15,25 @@
 
 /**
  * @brief  Initialise the INMP441 I2S RX channel (I2S port 1).
- *
- * Must be called once at boot before start_capture().
- * Configures 16 kHz, 32-bit slots, mono left channel.
- *
- * @param sck_gpio   I2S bit-clock GPIO (SCK on the mic).
- * @param ws_gpio    I2S word-select GPIO (WS / LR clock on the mic).
- * @param sd_gpio    I2S serial-data GPIO (SD on the mic → DIN on ESP).
- * @return ESP_OK on success.
+ *         Must be called once at boot before start_capture().
  */
 esp_err_t audio_service_init(gpio_num_t sck_gpio,
                               gpio_num_t ws_gpio,
                               gpio_num_t sd_gpio);
 
 /**
- * @brief  Start capturing audio.  Spawns the capture task if not running.
+ * @brief  Start capturing audio and writing to @p filepath.
+ *         The file is created (or overwritten) immediately.
+ *         Spawns the capture task; returns immediately.
+ *
+ * @param filepath  Absolute VFS path for the output WAV file.
  * @return ESP_OK, or ESP_ERR_INVALID_STATE if already capturing.
  */
-esp_err_t audio_service_start_capture(void);
+esp_err_t audio_service_start_capture(const char *filepath);
 
 /**
- * @brief  Stop capturing audio.  Blocks until the capture task has exited
- *         (max ~500 ms) so I2S is quiet before the caller continues.
+ * @brief  Stop capturing.  Finalises the WAV header and closes the file.
+ *         Blocks until the capture task has exited (max ~500 ms).
  * @return ESP_OK.
  */
 esp_err_t audio_service_stop_capture(void);

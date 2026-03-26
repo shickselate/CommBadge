@@ -1,0 +1,21 @@
+Command: ninja all
+[1/12] Performing build step for 'bootloader'
+[1/1] C:\windows\system32\cmd.exe /C "cd /D C:\Users\Stephen\dev\CommBadge\comm_badge\build\bootloader && C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 C:/Users/Stephen/dev/CommBadge/comm_badge/build/bootloader/bootloader.bin"
+Bootloader binary size 0x57e0 bytes. 0x2820 bytes (31%) free.
+[2/12] No install step for 'bootloader'
+[3/12] Completed 'bootloader'
+[4/12] Building C object esp-idf/button_service/CMakeFiles/__idf_button_service.dir/button_service.c.obj
+[5/12] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/app_main.c.obj
+[6/12] Linking C static library esp-idf\button_service\libbutton_service.a
+[7/12] Linking C static library esp-idf\main\libmain.a
+[8/12] Generating esp-idf/esp_system/ld/sections.ld
+[9/12] Building C object CMakeFiles/comm_badge.elf.dir/project_elf_src_esp32s3.c.obj
+[10/12] Linking CXX executable comm_badge.elf
+[11/12] Generating binary image from built executable
+esptool v5.2.0
+Creating ESP32-S3 image...
+Merged 2 ELF sections.
+Successfully created ESP32-S3 image.
+Generated C:/Users/Stephen/dev/CommBadge/comm_badge/build/comm_badge.bin
+[12/12] C:\windows\system32\cmd.exe /C "cd /D C:\Users\Stephen\dev\CommBadge\comm_badge\build && C:\Users\Stephen\.espressif\python_env\idf6.0_py3.14_env\Scripts\python.exe C:/esp/v6.0/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app C:/Users/Stephen/dev/CommBadge/comm_badge/build/partition_table/partition-table.bin C:/Users/Stephen/dev/CommBadge/comm_badge/build/comm_badge.bin"
+comm_badge.bin binary size 0x3dcc0 bytes. Smallest app partition is 0x180000 bytes. 0x142340 bytes (84%) free.
