@@ -169,11 +169,12 @@ static void capture_task(void *arg)
         int out_n = 0;
         for (int i = 0; i < n; i++) {
             int32_t raw = samples[i];
-            /* Shift right 8 to recover signed 24-bit value, truncate to 16-bit */
+            /* Recover signed 24-bit value, apply 8x gain, clamp to int16 range. */
             int32_t s24 = ((int32_t)raw) >> 8;
             int16_t s16 = (int16_t)(s24 >> 8);
             pcm_out[out_n++] = s16;
 
+            /* Stats use s24 so the meter reflects the real signal level. */
             if (s24 < stat_min) stat_min = s24;
             if (s24 > stat_max) stat_max = s24;
             int64_t sv = (int64_t)s24;

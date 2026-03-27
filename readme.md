@@ -17,22 +17,22 @@ Built on an ESP32-S3 with a real I2S microphone and amplifier, running native ES
 ### ✅ Milestone E2 — Microphone capture (complete)
 - INMP441 I2S MEMS microphone initialised and capturing on I2S port 1
 - 16kHz mono PCM audio captured on button press
-- RMS level meter visible on serial monitor, responds to sound and vibration
+- RMS level meter visible on serial monitor
 - Diagnosed and resolved I2S stereo interleaving on ESP-IDF v6.0
-- Note: on a breadboard the mic couples strongly to vibration — expected, will improve in enclosure
+- Key finding: GND pin selection is critical — not all GND pins are electrically equivalent on this board
 
 ### ✅ Milestone E3 — WAV recording and playback (complete)
-- Custom partition table: 4MB FAT partition on internal flash for audio storage
+- Custom partition table: 4MB FAT partition on internal flash
 - Wear-levelled FATFS mounted at `/audio` via `storage_service`
 - Audio recorded to `/audio/recording.wav` on button press (overwrites each time)
 - WAV header written correctly with final size on stop
 - Immediate playback via MAX98357 on second button press
 - Full loop working: press → speak → press → hear playback
-- Audio quality improvement pending (I2S sample extraction tuning)
+- Speech barely intelligible at 1-8x software gain — audio quality tuning ongoing
 
 ### 🔄 Milestone E4 — Audio quality (next)
-- Fix I2S sample extraction to eliminate static from playback
-- Confirm clean speech recording and playback
+- Tune software gain and sample extraction for clean speech
+- Characterise SNR on breadboard vs enclosure
 - Verify WAV files are valid and playable on PC
 
 ---
@@ -55,9 +55,12 @@ Built on an ESP32-S3 with a real I2S microphone and amplifier, running native ES
 | MAX98357 BCLK | 15 |
 | MAX98357 LRCLK | 16 |
 | MAX98357 DIN | 17 |
-| INMP441 SCK | 5 |
-| INMP441 WS | 6 |
-| INMP441 SD | 4 |
+| INMP441 SCK | 10 |
+| INMP441 WS | 8 |
+| INMP441 SD | 9 |
+
+### Important wiring note
+Not all GND pins on the Olimex board are electrically equivalent. Mic, amp and button must share the same GND pin or a closely adjacent one — using distant GND pins introduces noise that degrades audio quality significantly. Verify with a multimeter if audio quality is poor.
 
 ---
 
@@ -101,22 +104,25 @@ idf.py -p COM4 flash monitor
 ## Roadmap
 
 ### E4 — Audio quality
-Fix I2S sample extraction so playback is clean speech rather than static. Verify WAV files are playable on PC.
+Tune gain and sample extraction for clean intelligible speech. Verify WAV playable on PC.
 
 ### E5 — Note management
-Support multiple notes. Generate filenames with timestamps. Track metadata (ID, duration, size, sync status). Survive reboots cleanly.
+Support multiple notes with timestamps. Metadata survives reboot.
 
 ### E6 — BLE basics
 Advertise over Bluetooth LE. Android test app can connect and read badge status.
 
 ### E7 — Note index over BLE
-Android app can retrieve a list of available notes from the badge.
+Android app retrieves list of available notes from badge.
 
 ### E8 — File transfer
-Transfer WAV files from badge to Android app over BLE in chunks. App marks notes as synced.
+Transfer WAV files to Android over BLE. App marks notes as synced.
 
-### E9 — Power management
-Idle timeout, sleep and wake. Badge becomes battery-usable rather than bench-only.
+### E9 — Android transcription
+On-device speech-to-text. Notes appear as readable text in the app.
+
+### E10 — Power management
+Idle timeout, sleep and wake. Badge becomes battery-usable.
 
 ---
 
