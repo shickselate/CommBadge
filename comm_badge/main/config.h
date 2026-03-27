@@ -18,6 +18,6 @@
 
 /* ---- I2S port 1 — INMP441 microphone (input) -------------------------- */
 /* L/R pin on the mic is grounded → outputs on the left channel.            */
-#define CONFIG_MIC_SCK_GPIO      5   /* Bit clock (SCK)                 */
-#define CONFIG_MIC_WS_GPIO       6   /* Word select (WS / LR clock)     */
-#define CONFIG_MIC_SD_GPIO       4   /* Serial data in (SD)             */
+#define CONFIG_MIC_SCK_GPIO      10   /* Bit clock (SCK)                 */
+#define CONFIG_MIC_WS_GPIO       8   /* Word select (WS / LR clock)     */
+#define CONFIG_MIC_SD_GPIO       9   /* Serial data in (SD)             */

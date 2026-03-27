@@ -129,8 +129,8 @@ static void capture_task(void *arg)
     /* I2S read buffer: CAPTURE_CHUNK 32-bit words. */
     int32_t samples[CAPTURE_CHUNK];
 
-    /* PCM write buffer: half as many 16-bit samples (only even indices kept). */
-    int16_t pcm_out[CAPTURE_CHUNK / 2];
+    /* PCM write buffer */
+    int16_t pcm_out[CAPTURE_CHUNK];
 
     /* Level meter accumulators. */
     int32_t    stat_min    = INT32_MAX;
@@ -166,20 +166,14 @@ static void capture_task(void *arg)
             ESP_LOGI(TAG, "--- END DUMP ---");
         }
 
-        /* Extract real audio: even indices only, truncate 24-bit → 16-bit. */
         int out_n = 0;
-        for (int i = 0; i < n; i += 2) {
+        for (int i = 0; i < n; i++) {
             int32_t raw = samples[i];
-            if (raw == 0) {
-                pcm_out[out_n++] = 0;
-                continue;
-            }
-            /* Shift right 8 to recover 24-bit value, then take upper 16 bits. */
-            int32_t s24 = raw >> 8;
+            /* Shift right 8 to recover signed 24-bit value, truncate to 16-bit */
+            int32_t s24 = ((int32_t)raw) >> 8;
             int16_t s16 = (int16_t)(s24 >> 8);
             pcm_out[out_n++] = s16;
 
-            /* Accumulate stats using the 24-bit value for better resolution. */
             if (s24 < stat_min) stat_min = s24;
             if (s24 > stat_max) stat_max = s24;
             int64_t sv = (int64_t)s24;
